@@ -1,0 +1,3 @@
+# Cache de cidades da API IBGE — gerado automaticamente pelo sistema
+# Cada arquivo = um estado (ex: SP.json, RJ.json)
+# TTL: 24 horas

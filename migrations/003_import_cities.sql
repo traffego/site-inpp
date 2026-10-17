@@ -1,0 +1,60 @@
+-- ============================================================
+-- MIGRATION 003: Importação de Cidades Brasileiras
+-- Instituto Atleta Para Sempre
+--
+-- INSTRUÇÕES:
+-- Este arquivo deve ser gerado a partir do backup legado.
+-- O sistema legado contém 5.593 cidades na tabela 'cidades'.
+--
+-- Opção 1: Usar o script PHP abaixo para importar do backup
+-- Opção 2: Importar de uma fonte pública (IBGE)
+--
+-- SCRIPT PHP PARA IMPORTAR DO BACKUP LEGADO:
+-- Salve como import_cities.php na raiz e execute uma vez.
+-- ============================================================
+
+-- Exemplo de estrutura esperada:
+-- INSERT INTO cidade (nome, codUf) VALUES ('São Paulo', 'SP');
+-- INSERT INTO cidade (nome, codUf) VALUES ('Rio de Janeiro', 'RJ');
+-- ...
+
+-- Para gerar este arquivo do backup legado, utilize:
+-- mysqldump --no-create-info iaps_legacy cidades > cidades_legacy.sql
+-- Depois adapte os nomes das colunas para o novo schema.
+
+-- ============================================================
+-- SCRIPT PHP DE IMPORTAÇÃO (import_cities.php)
+-- ============================================================
+-- <?php
+-- // Executar UMA VEZ para importar cidades do banco legado
+-- // Configure as credenciais do banco LEGADO abaixo
+-- define('LEGACY_HOST', 'localhost');
+-- define('LEGACY_DB', 'iaps_legacy');
+-- define('LEGACY_USER', 'root');
+-- define('LEGACY_PASS', '');
+--
+-- // Banco NOVO
+-- define('NEW_HOST', 'localhost');
+-- define('NEW_DB', 'iaps_db');
+-- define('NEW_USER', 'root');
+-- define('NEW_PASS', '');
+--
+-- // Conectar ao legado
+-- $pdo_legacy = new PDO("mysql:host=".LEGACY_HOST.";dbname=".LEGACY_DB.";charset=latin1", LEGACY_USER, LEGACY_PASS);
+-- $pdo_new    = new PDO("mysql:host=".NEW_HOST.";dbname=".NEW_DB.";charset=utf8mb4", NEW_USER, NEW_PASS);
+-- $pdo_new->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+--
+-- // Buscar cidades do legado (ajustar nome das colunas conforme dump)
+-- $stmt = $pdo_legacy->query("SELECT cidade, uf FROM cidades ORDER BY cidade");
+-- $cidades = $stmt->fetchAll(PDO::FETCH_ASSOC);
+--
+-- // Inserir no novo banco
+-- $insert = $pdo_new->prepare("INSERT IGNORE INTO cidade (nome, codUf) VALUES (?, ?)");
+-- $count = 0;
+-- foreach ($cidades as $c) {
+--     $nome = mb_convert_encoding($c['cidade'], 'UTF-8', 'ISO-8859-1');
+--     $uf   = strtoupper(trim($c['uf']));
+--     $insert->execute([$nome, $uf]);
+--     $count++;
+-- }
+-- echo "Importadas $count cidades.\n";

@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Admin UI — 100% Tabler Original Theme & Utilities
+   Cores nativas do Tabler UI: Azul Original (#0054a6), Superfícies e Tons Nativos
+   ========================================================================== */
+
+/* ── Garantia de Integridade da Marca INPP ────────────────────────────────── */
+.navbar-brand-image,
+.navbar-brand img,
+.brand-image {
+  filter: none !important;
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ── Helpers de Módulos (Projetos, Fornecedores, Currículos) ──────────────── */
+.row-expandable {
+  cursor: pointer;
+}
+
+.row-details td {
+  background-color: var(--tblr-bg-surface-secondary);
+}
+
+.view-toggle-btns {
+  display: inline-flex;
+  gap: 2px;
+}
+
+/* ── Compatibilidade de Classes Legadas com as Cores Nativas do Tabler ───── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: var(--tblr-btn-padding-y, 0.4375rem) var(--tblr-btn-padding-x, 0.75rem);
+  font-size: var(--tblr-font-size-base, 0.875rem);
+  color: var(--tblr-body-color);
+  background-color: var(--tblr-bg-forms, var(--tblr-bg-surface));
+  border: var(--tblr-border-width, 1px) solid var(--tblr-border-color);
+  border-radius: var(--tblr-border-radius, 4px);
+}
+
+.form-input:focus {
+  border-color: var(--tblr-primary);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(0, 84, 166, 0.25);
+}
+
+/* Badges legadas mapeadas para as cores oficiais do Tabler */
+.badge-primary   { background-color: var(--tblr-primary); color: #fff; }
+.badge-secondary { background-color: var(--tblr-secondary); color: #fff; }
+.badge-success   { background-color: var(--tblr-success); color: #fff; }
+.badge-danger    { background-color: var(--tblr-danger); color: #fff; }
+.badge-warning   { background-color: var(--tblr-warning); color: #fff; }
+.badge-info      { background-color: var(--tblr-info); color: #fff; }

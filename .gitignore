@@ -1,0 +1,39 @@
+# Dependências
+node_modules/
+vendor/
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Dados sensíveis
+data/auth_info/
+
+# Uploads privados
+# uploads/fornecedores/*
+uploads/para_colocar_no_banco_e_organizar_nas_pastas/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+storage/cache/cidades/*.json
+
+# Manter estrutura
+!uploads/**/.gitkeep
+!storage/**/.gitkeep

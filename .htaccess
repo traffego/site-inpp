@@ -1,0 +1,23 @@
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteBase /
+
+# Protect sensitive directories
+RewriteRule ^src/ - [F,L]
+RewriteRule ^templates/ - [F,L]
+RewriteRule ^migrations/ - [F,L]
+RewriteRule ^\.env - [F,L]
+
+# Auto-rewrite any directory request to its index.php file if it exists
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}/index.php -f
+RewriteRule ^(.*)$ $1/index.php [L]
+
+# Allow direct access to real files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route everything else to front controller
+RewriteRule ^(.*)$ index.php [QSA,L]
