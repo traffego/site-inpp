@@ -136,11 +136,26 @@ function pagination_html(array $pagination, string $base_url): string {
 function asset(string $path): string {
     $full_path = defined('ROOT_PATH') ? ROOT_PATH . '/' . ltrim($path, '/') : __DIR__ . '/../' . ltrim($path, '/');
     $v = file_exists($full_path) ? filemtime($full_path) : time();
-    return rtrim(APP_URL, '/') . '/' . ltrim($path, '/') . '?v=' . $v;
+    $base_path = defined('APP_URL') ? parse_url(APP_URL, PHP_URL_PATH) : '';
+    $prefix = ($base_path && $base_path !== '/') ? rtrim($base_path, '/') : '';
+    return $prefix . '/' . ltrim($path, '/') . '?v=' . $v;
 }
 
 function base_url(string $path = ''): string {
-    return rtrim(APP_URL, '/') . '/' . ltrim($path, '/') . '?v=' . time();
+    $base_path = defined('APP_URL') ? parse_url(APP_URL, PHP_URL_PATH) : '';
+    $prefix = ($base_path && $base_path !== '/') ? rtrim($base_path, '/') : '';
+    if ($path === '' || $path === '/') {
+        return $prefix !== '' ? $prefix : '/';
+    }
+    return $prefix . '/' . ltrim($path, '/');
+}
+
+function absolute_url(string $path = ''): string {
+    $base = defined('APP_URL') ? rtrim(APP_URL, '/') : '';
+    if ($path === '' || $path === '/') {
+        return $base;
+    }
+    return $base . '/' . ltrim($path, '/');
 }
 
 function upload_path(string $subdir = ''): string {

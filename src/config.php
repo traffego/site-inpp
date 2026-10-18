@@ -55,7 +55,23 @@ define('SMTP_FROM_NAME', $_ENV['SMTP_FROM_NAME'] ?? 'Instituto Nacional de Polí
 // Outros
 define('TINYMCE_API_KEY', $_ENV['TINYMCE_API_KEY'] ?? '');
 define('CONTACT_EMAIL', $_ENV['CONTACT_EMAIL'] ?? 'contato@inpp.org');
-define('APP_URL', $_ENV['APP_URL'] ?? 'http://localhost:8080');
+
+// Detecção inteligente de URL base para evitar requisições para localhost em produção
+$detected_host = $_SERVER['HTTP_HOST'] ?? 'localhost:8080';
+$is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+    || (!empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+$detected_scheme = $is_https ? 'https' : 'http';
+$detected_url = $detected_scheme . '://' . $detected_host;
+
+$configured_app_url = $_ENV['APP_URL'] ?? null;
+if (empty($configured_app_url)) {
+    $configured_app_url = $detected_url;
+} elseif (isset($_SERVER['HTTP_HOST']) && !in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1', '::1']) && str_contains($configured_app_url, 'localhost')) {
+    // Se o site estiver rodando em servidor real (ex: Hostinger), mas o .env tiver localhost, usar o domínio real
+    $configured_app_url = $detected_url;
+}
+define('APP_URL', rtrim($configured_app_url, '/'));
 define('APP_ENV', $_ENV['APP_ENV'] ?? 'development');
 define('APP_DEBUG', filter_var($_ENV['APP_DEBUG'] ?? true, FILTER_VALIDATE_BOOLEAN));
 

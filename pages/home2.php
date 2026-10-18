@@ -321,7 +321,7 @@ ob_start();
 </section>
 
 <!-- MOTOR ÓPTICO GLASSCSS (PRODUÇÃO) -->
-<script src="<?= asset('assets/js/glass-engine.js') ?>?v=<?= filemtime(ROOT_PATH . '/assets/js/glass-engine.js') ?>"></script>
+<script src="<?= asset('assets/js/glass-engine.js') ?>"></script>
 
 <?php
 $content = ob_get_clean();

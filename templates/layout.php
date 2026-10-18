@@ -49,7 +49,7 @@ try {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 
     <!-- CSS Principal (Glacier Design) -->
-    <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>?v=<?= file_exists(ROOT_PATH . '/assets/css/style.css') ? filemtime(ROOT_PATH . '/assets/css/style.css') : time() ?>">
+    <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>">
 
     <!-- Garantir padrão claro oficial INPP -->
     <script>
@@ -99,7 +99,7 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
 
     <!-- Main JS -->
-    <script src="<?= asset('assets/js/main.js') ?>?v=<?= file_exists(ROOT_PATH . '/assets/js/main.js') ? filemtime(ROOT_PATH . '/assets/js/main.js') : time() ?>"></script>
+    <script src="<?= asset('assets/js/main.js') ?>"></script>
 
     <script>
         // Lucide Icons init
