@@ -20,6 +20,7 @@ try {
 
             <div class="navbar-collapse" id="mobile-menu">
                 <ul class="navbar-nav">
+                    <li class="nav-item"><a href="/" class="nav-link"><i class="ph ph-house"></i> Início</a></li>
                     <li class="nav-item"><a href="/quem-somos" class="nav-link"><i class="ph ph-info"></i> Quem Somos</a></li>
                     
                     <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('projetos')): ?>
