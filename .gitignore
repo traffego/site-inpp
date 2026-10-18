@@ -9,6 +9,9 @@ vendor/
 
 # Dados sensíveis
 data/auth_info/
+backups/
+*.sql
+!migrations/*.sql
 
 # Uploads privados
 # uploads/fornecedores/*
