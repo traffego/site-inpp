@@ -18,8 +18,8 @@ $page_title = $page_title ?? 'Admin — Instituto Nacional de Políticas Públic
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     
     <!-- Tabler Core CSS -->
-    <link href="/assets/vendor/tabler/tabler.min.css" rel="stylesheet"/>
-    <link href="/assets/vendor/tabler/tabler-icons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
     
     <!-- CSS Customizado com Cache-Busting -->
     <?php
@@ -101,7 +101,7 @@ $page_title = $page_title ?? 'Admin — Instituto Nacional de Políticas Públic
     </div>
 
     <!-- Tabler Core JS -->
-    <script src="/assets/vendor/tabler/tabler.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js" defer></script>
     <script>
         // Alternância de Tema Admin
         function toggleAdminTheme() {

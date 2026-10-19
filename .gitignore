@@ -1,6 +1,7 @@
 # Dependências
-node_modules/
-vendor/
+/node_modules/
+/vendor/
+!assets/vendor/**
 
 # Ambiente
 .env
