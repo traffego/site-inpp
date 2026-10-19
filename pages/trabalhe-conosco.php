@@ -564,9 +564,11 @@ ob_start();
                 </p>
             </div>
             <div class="proj-transparency-links">
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('editais')): ?>
                 <a href="/editais" class="btn btn-primary">
                     Consultar Editais Abertos
                 </a>
+                <?php endif; ?>
                 <a href="/fornecedores" class="btn btn-outline">
                     Cadastro de Fornecedores
                 </a>

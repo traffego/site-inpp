@@ -60,9 +60,11 @@ ob_start();
             <a href="#eixos" class="btn btn-lg glass-dark" data-glass="liquido" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #ffffff; text-decoration: none; font-weight: 700; padding: 0.85rem 1.75rem;">
                 <i class="ph ph-squares-four"></i> Eixos de Atuação
             </a>
+            <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('transparencia')): ?>
             <a href="/transparencia/declaracao" class="btn btn-accent btn-lg">
                 <i class="ph-duotone ph-file-text"></i> Transparência
             </a>
+            <?php endif; ?>
         </div>
     </div>
     <div class="hero-scroll-hint" aria-hidden="true">

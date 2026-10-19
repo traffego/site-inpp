@@ -219,7 +219,9 @@ ob_start();
                 </p>
                 <div class="fin-doc-footer">
                     <span class="fin-doc-size"><i class="ph ph-check"></i> Ateste e Prestação de Contas</span>
+                    <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('financeiro')): ?>
                     <a href="/transparencia/financeiro" class="btn btn-outline btn-sm">Prestação de Contas <i class="ph ph-arrow-right"></i></a>
+                    <?php endif; ?>
                 </div>
             </article>
         </div>
@@ -237,9 +239,11 @@ ob_start();
                 <a href="/fornecedores" class="btn btn-primary">
                     Portal de Fornecedores
                 </a>
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('editais')): ?>
                 <a href="/editais" class="btn btn-outline">
                     Editais e Cotações
                 </a>
+                <?php endif; ?>
                 <a href="/contato" class="btn btn-outline">
                     Setor de Compras
                 </a>

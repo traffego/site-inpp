@@ -258,12 +258,16 @@ ob_start();
                 </p>
             </div>
             <div class="proj-transparency-links">
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('dirigentes')): ?>
                 <a href="/transparencia/dirigentes" class="btn btn-primary">
                     Corpo Diretivo
                 </a>
+                <?php endif; ?>
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('declaracao')): ?>
                 <a href="/transparencia/declaracao" class="btn btn-outline">
                     Declaração Institucional
                 </a>
+                <?php endif; ?>
                 <a href="/contato" class="btn btn-outline">
                     Fale com a Ouvidoria
                 </a>

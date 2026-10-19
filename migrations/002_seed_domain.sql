@@ -38,7 +38,7 @@ INSERT INTO `tab_curriculos_funcao` (`funcao`, `ativo`) VALUES
 
 -- Organização (cod_org=10001)
 INSERT INTO `tab_org` (`cod_org`, `nome_org`, `cnpj`, `endereco`, `bairro`, `cidade`, `estado`, `telefone`, `e_mail`, `liberado`) VALUES
-(10001, 'INSTITUTO ATLETAS PARA SEMPRE', '17.397.521/0001-27', 'Rua Eugênio de Lima, 143, sala 01', 'Boa Viagem', 'Recife', 'PE', '(81) 98328-8465', 'gestao.atletaparasempre@gmail.com', 1);
+(10001, 'INSTITUTO NACIONAL DE POLÍTICAS PÚBLICAS', '27.282.557/0001-19', 'Av. Ayrton Senna, nº 3.000 – sala 321 bloco 1', 'Barra da Tijuca', 'Rio de Janeiro', 'RJ', '(81) 98328-8465', 'contato@inpp.org', 1);
 
 -- Admin user (senha pre-hasheada para 'admin123' usando bcrypt)
 INSERT INTO `tab_login` (`usuario`, `senha`, `nome_usuario`, `nivel`, `cod_org`) VALUES

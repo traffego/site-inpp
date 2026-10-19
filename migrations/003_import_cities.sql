@@ -1,6 +1,6 @@
 -- ============================================================
 -- MIGRATION 003: Importação de Cidades Brasileiras
--- Instituto Atleta Para Sempre
+-- Instituto Nacional de Políticas Públicas (INPP)
 --
 -- INSTRUÇÕES:
 -- Este arquivo deve ser gerado a partir do backup legado.

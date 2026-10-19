@@ -21,7 +21,7 @@ try {
 
 $cnpj = $org['cnpj'] ?? '27.282.557/0001-19';
 $telefone = $org['telefone'] ?? '(81) 98328-8465';
-$email = $org['e_mail'] ?? 'gestao.atletaparasempre@gmail.com';
+$email = (!empty($org['e_mail'])) ? $org['e_mail'] : (defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'contato@inpp.org');
 
 $endereco_completo = 'Av. Ayrton Senna, nº 3.000 – sala 321 bloco 1 – Barra da Tijuca, Rio de Janeiro - RJ, CEP 22.775-904';
 if (!empty($org['endereco'])) {
@@ -295,23 +295,36 @@ ob_start();
                         </li>
                     </ul>
 
+                    <?php
+                    $has_social = !empty($org['facebook']) || !empty($org['instagram']) || !empty($org['youtube']) || !empty($org['linkedin']);
+                    ?>
+                    <?php if ($has_social): ?>
                     <div class="ct-social-box">
                         <span class="ct-social-label">Canais Oficiais nas Redes Sociais</span>
                         <div class="footer-social">
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <?php if (!empty($org['facebook'])): ?>
+                            <a href="<?= e($org['facebook']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                                 <i class="ph ph-facebook-logo"></i>
                             </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <?php endif; ?>
+                            <?php if (!empty($org['instagram'])): ?>
+                            <a href="<?= e($org['instagram']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                                 <i class="ph ph-instagram-logo"></i>
                             </a>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <?php endif; ?>
+                            <?php if (!empty($org['youtube'])): ?>
+                            <a href="<?= e($org['youtube']) ?>" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                                 <i class="ph ph-youtube-logo"></i>
                             </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <?php endif; ?>
+                            <?php if (!empty($org['linkedin'])): ?>
+                            <a href="<?= e($org['linkedin']) ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <i class="ph ph-linkedin-logo"></i>
                             </a>
+                            <?php endif; ?>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- CARD DE ACESSO À INFORMAÇÃO -->
@@ -322,9 +335,15 @@ ob_start();
                     <div>
                         <h4>Portal da Transparência</h4>
                         <p>Documentos estatutários, demonstrativos financeiros, termos de fomento e relatórios de auditoria estão disponíveis para acesso público.</p>
+                        <?php if (is_transparencia_habilitada('financeiro')): ?>
                         <a href="/transparencia/financeiro" class="btn btn-outline btn-sm">
                             Acessar Prestação de Contas <i class="ph ph-arrow-right"></i>
                         </a>
+                        <?php elseif (is_transparencia_habilitada('estatuto')): ?>
+                        <a href="/transparencia/estatuto" class="btn btn-outline btn-sm">
+                            Acessar Portal da Transparência <i class="ph ph-arrow-right"></i>
+                        </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

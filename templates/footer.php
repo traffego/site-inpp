@@ -11,7 +11,7 @@ try {
 
 $cnpj = $footer_org['cnpj'] ?? '27.282.557/0001-19';
 $telefone = $footer_org['telefone'] ?? '(81) 98328-8465';
-$email = $footer_org['e_mail'] ?? 'gestao.atletaparasempre@gmail.com';
+$email = (!empty($footer_org['e_mail'])) ? $footer_org['e_mail'] : (defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'contato@inpp.org');
 
 $endereco_completo = 'Av. Ayrton Senna, nº 3.000 – sala 321 bloco 1 – Barra da Tijuca, Rio de Janeiro - RJ, CEP 22.775-904';
 if (!empty($footer_org['endereco'])) {
@@ -36,20 +36,33 @@ $tel_num = preg_replace('/\D/', '', $telefone);
                 <p class="footer-about">
                     Organização da sociedade civil dedicada ao desenvolvimento de iniciativas e políticas públicas com foco em cidadania, educação e inclusão social.
                 </p>
+                <?php
+                $has_social = !empty($footer_org['facebook']) || !empty($footer_org['instagram']) || !empty($footer_org['youtube']) || !empty($footer_org['linkedin']);
+                ?>
+                <?php if ($has_social): ?>
                 <div class="footer-social">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <?php if (!empty($footer_org['facebook'])): ?>
+                    <a href="<?= e($footer_org['facebook']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <i class="ph ph-facebook-logo"></i>
                     </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <?php endif; ?>
+                    <?php if (!empty($footer_org['instagram'])): ?>
+                    <a href="<?= e($footer_org['instagram']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <i class="ph ph-instagram-logo"></i>
                     </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <?php endif; ?>
+                    <?php if (!empty($footer_org['youtube'])): ?>
+                    <a href="<?= e($footer_org['youtube']) ?>" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                         <i class="ph ph-youtube-logo"></i>
                     </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <?php endif; ?>
+                    <?php if (!empty($footer_org['linkedin'])): ?>
+                    <a href="<?= e($footer_org['linkedin']) ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <i class="ph ph-linkedin-logo"></i>
                     </a>
+                    <?php endif; ?>
                 </div>
+                <?php endif; ?>
             </div>
 
             <!-- Coluna 2: Acesso Institucional -->

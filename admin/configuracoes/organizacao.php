@@ -19,6 +19,18 @@ $breadcrumb = [
 try {
     db_execute("ALTER TABLE tab_org ADD COLUMN tema_padrao VARCHAR(10) DEFAULT 'dark'");
 } catch (Throwable $e) {}
+try {
+    db_execute("ALTER TABLE tab_org ADD COLUMN facebook VARCHAR(255) DEFAULT NULL");
+} catch (Throwable $e) {}
+try {
+    db_execute("ALTER TABLE tab_org ADD COLUMN instagram VARCHAR(255) DEFAULT NULL");
+} catch (Throwable $e) {}
+try {
+    db_execute("ALTER TABLE tab_org ADD COLUMN youtube VARCHAR(255) DEFAULT NULL");
+} catch (Throwable $e) {}
+try {
+    db_execute("ALTER TABLE tab_org ADD COLUMN linkedin VARCHAR(255) DEFAULT NULL");
+} catch (Throwable $e) {}
 
 $org = db_fetch('SELECT * FROM tab_org WHERE cod_org = 10001');
 
@@ -26,18 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_verify();
 
     $dados = [
-        'nome_org'     => trim($_POST['nome_org'] ?? ''),
+        'nome_org'       => trim($_POST['nome_org'] ?? ''),
         'presidente_org' => trim($_POST['presidente_org'] ?? ''),
-        'telefone'     => trim($_POST['telefone'] ?? ''),
-        'e_mail'       => trim($_POST['e_mail'] ?? ''),
-        'endereco'     => trim($_POST['endereco'] ?? ''),
-        'bairro'       => trim($_POST['bairro'] ?? ''),
-        'cidade'       => trim($_POST['cidade'] ?? ''),
-        'estado'       => trim($_POST['estado'] ?? ''),
-        'cep'          => trim($_POST['cep'] ?? ''),
-        'site'         => trim($_POST['site'] ?? ''),
-        'tema_padrao'  => trim($_POST['tema_padrao'] ?? 'dark'),
-        'liberado'     => isset($_POST['liberado']) ? 1 : 0,
+        'telefone'       => trim($_POST['telefone'] ?? ''),
+        'e_mail'         => trim($_POST['e_mail'] ?? ''),
+        'endereco'       => trim($_POST['endereco'] ?? ''),
+        'bairro'         => trim($_POST['bairro'] ?? ''),
+        'cidade'         => trim($_POST['cidade'] ?? ''),
+        'estado'         => trim($_POST['estado'] ?? ''),
+        'cep'            => trim($_POST['cep'] ?? ''),
+        'site'           => trim($_POST['site'] ?? ''),
+        'facebook'       => trim($_POST['facebook'] ?? ''),
+        'instagram'      => trim($_POST['instagram'] ?? ''),
+        'youtube'        => trim($_POST['youtube'] ?? ''),
+        'linkedin'       => trim($_POST['linkedin'] ?? ''),
+        'tema_padrao'    => trim($_POST['tema_padrao'] ?? 'dark'),
+        'liberado'       => isset($_POST['liberado']) ? 1 : 0,
     ];
 
     if ($org) {
@@ -137,6 +153,36 @@ ob_start();
                         <div class="col-12 col-sm-4">
                             <label for="estado" class="form-label">Estado (UF)</label>
                             <input type="text" id="estado" name="estado" class="form-control text-uppercase" value="<?= e($org['estado'] ?? '') ?>" maxlength="2" placeholder="DF">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Redes Sociais Institucionais -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">Redes Sociais Institucionais</h3>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary small mb-3">
+                        Preencha apenas as redes que a instituição utiliza. No portal público (rodapé e contato), somente os ícones com link cadastrado serão exibidos. Deixe em branco os que não possuir.
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                            <label for="instagram" class="form-label">Instagram</label>
+                            <input type="url" id="instagram" name="instagram" class="form-control" value="<?= e($org['instagram'] ?? '') ?>" placeholder="https://instagram.com/inpp">
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label for="facebook" class="form-label">Facebook</label>
+                            <input type="url" id="facebook" name="facebook" class="form-control" value="<?= e($org['facebook'] ?? '') ?>" placeholder="https://facebook.com/inpp">
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label for="youtube" class="form-label">YouTube</label>
+                            <input type="url" id="youtube" name="youtube" class="form-control" value="<?= e($org['youtube'] ?? '') ?>" placeholder="https://youtube.com/@inpp">
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label for="linkedin" class="form-label">LinkedIn</label>
+                            <input type="url" id="linkedin" name="linkedin" class="form-control" value="<?= e($org['linkedin'] ?? '') ?>" placeholder="https://linkedin.com/company/inpp">
                         </div>
                     </div>
                 </div>

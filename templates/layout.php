@@ -1,7 +1,7 @@
 <?php
 /**
  * Layout base do site público
- * Instituto Atleta Para Sempre
+ * Instituto Nacional de Políticas Públicas (INPP)
  * 
  * Variáveis esperadas:
  * - $page_title (string)

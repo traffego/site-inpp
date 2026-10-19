@@ -202,17 +202,35 @@ ob_start();
                 <p>
                     Como Organização da Sociedade Civil, o INPP mantém suas informações societárias, fiscais e financeiras acessíveis a parceiros, órgãos de controle e à sociedade em geral, em estrito cumprimento à Lei nº 13.019/2014 e à Lei de Acesso à Informação (Lei nº 12.527/2011).
                 </p>
+                <?php
+                $hab_estatuto   = function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('estatuto');
+                $hab_dirigentes = function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('dirigentes');
+                $hab_financeiro = function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('financeiro');
+                $hab_transp     = function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('transparencia');
+                ?>
+                <?php if ($hab_estatuto || $hab_dirigentes || $hab_financeiro || $hab_transp): ?>
                 <div class="qs-gov-actions">
+                    <?php if ($hab_estatuto): ?>
                     <a href="/transparencia/estatuto" class="btn btn-outline">
                         Estatuto Social
                     </a>
+                    <?php endif; ?>
+                    <?php if ($hab_dirigentes): ?>
                     <a href="/transparencia/dirigentes" class="btn btn-outline">
                         Quadro de Dirigentes
                     </a>
+                    <?php endif; ?>
+                    <?php if ($hab_financeiro): ?>
                     <a href="/transparencia/financeiro" class="btn btn-primary">
+                        Demonstrações Financeiras
+                    </a>
+                    <?php elseif ($hab_transp): ?>
+                    <a href="/transparencia/declaracao" class="btn btn-primary">
                         Portal da Transparência
                     </a>
+                    <?php endif; ?>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="qs-gov-aside">
                 <div class="qs-gov-stat">

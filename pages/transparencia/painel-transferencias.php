@@ -239,12 +239,16 @@ ob_start();
                 </p>
             </div>
             <div class="proj-transparency-links">
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('financeiro')): ?>
                 <a href="/transparencia/financeiro" class="btn btn-primary">
                     Demonstrações Financeiras
                 </a>
+                <?php endif; ?>
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('termos')): ?>
                 <a href="/transparencia/termos" class="btn btn-outline">
                     Termos de Fomento
                 </a>
+                <?php endif; ?>
                 <a href="/contato" class="btn btn-outline">
                     Fale com a Ouvidoria
                 </a>

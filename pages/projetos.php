@@ -129,8 +129,11 @@ ob_start();
         <div class="proj-empty-box">
             <i class="ph ph-folder-dashed"></i>
             <h3>Nenhum projeto registrado</h3>
-            <p>Não há registros de projetos cadastrados no momento.</p>
+            <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('editais')): ?>
             <a href="/editais" class="btn btn-primary">Acessar Editais Públicos</a>
+            <?php else: ?>
+            <a href="/" class="btn btn-outline">Voltar à Página Inicial</a>
+            <?php endif; ?>
         </div>
         <?php else: ?>
 
@@ -218,15 +221,21 @@ ob_start();
                 </p>
             </div>
             <div class="proj-transparency-links">
+                <?php if (is_transparencia_habilitada('termos')): ?>
                 <a href="/transparencia/termos" class="btn btn-outline">
                     Termos de Fomento
                 </a>
+                <?php endif; ?>
+                <?php if (is_transparencia_habilitada('financeiro')): ?>
                 <a href="/transparencia/financeiro" class="btn btn-outline">
                     Relatórios Financeiros
                 </a>
+                <?php endif; ?>
+                <?php if (is_transparencia_habilitada('painel')): ?>
                 <a href="/transparencia/painel" class="btn btn-primary">
                     Painel de Transferências
                 </a>
+                <?php endif; ?>
             </div>
         </div>
 

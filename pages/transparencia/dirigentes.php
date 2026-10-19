@@ -217,7 +217,9 @@ ob_start();
                 </p>
                 <div class="fin-doc-footer">
                     <span class="fin-doc-size"><i class="ph ph-calendar-blank"></i> Reuniões Ordinárias Anuais</span>
+                    <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('estatuto')): ?>
                     <a href="/transparencia/estatuto" class="btn btn-outline btn-sm">Ver no Estatuto <i class="ph ph-arrow-right"></i></a>
+                    <?php endif; ?>
                 </div>
             </article>
 
@@ -253,7 +255,9 @@ ob_start();
                 </p>
                 <div class="fin-doc-footer">
                     <span class="fin-doc-size"><i class="ph ph-check-circle"></i> Parecer Contábil</span>
+                    <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('financeiro')): ?>
                     <a href="/transparencia/financeiro" class="btn btn-outline btn-sm">Balanços Contábeis <i class="ph ph-arrow-right"></i></a>
+                    <?php endif; ?>
                 </div>
             </article>
         </div>
@@ -273,12 +277,16 @@ ob_start();
                 <a href="/contato" class="btn btn-primary">
                     Secretaria &amp; Expediente
                 </a>
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('estatuto')): ?>
                 <a href="/transparencia/estatuto" class="btn btn-outline">
                     Estatuto Social
                 </a>
+                <?php endif; ?>
+                <?php if (function_exists('is_transparencia_habilitada') && is_transparencia_habilitada('declaracao')): ?>
                 <a href="/transparencia/declaracao" class="btn btn-outline">
                     Declaração Institucional
                 </a>
+                <?php endif; ?>
             </div>
         </div>
 

@@ -210,7 +210,10 @@ ob_start();
                                         <?php endif; ?>
                                     </div>
 
-                                    <a href="/uploads/projetos/<?= (int)$doc['id'] ?>.pdf"
+                                    <?php 
+                                        $nome_arquivo_doc = !empty($doc['arquivo']) ? $doc['arquivo'] : ((int)$doc['id'] . '.pdf');
+                                    ?>
+                                    <a href="/uploads/projetos/<?= e($nome_arquivo_doc) ?>"
                                        class="btn btn-primary btn-sm"
                                        target="_blank"
                                        rel="noopener"
