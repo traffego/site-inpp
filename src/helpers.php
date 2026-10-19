@@ -255,3 +255,32 @@ function get_transparencia_subnav_items(string $active_slug = ''): array {
     return $items;
 }
 
+/**
+ * Retorna data por extenso em português (ex: 15 de outubro de 2026)
+ */
+function formatar_data_extenso(?string $date): string {
+    if (!$date) return 'Data não informada';
+    $ts = strtotime($date);
+    if (!$ts) return 'Data não informada';
+    
+    $meses = [
+        1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril',
+        5 => 'maio', 6 => 'junho', 7 => 'julho', 8 => 'agosto',
+        9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'
+    ];
+    $dia = date('d', $ts);
+    $mes = $meses[(int)date('m', $ts)] ?? date('m', $ts);
+    $ano = date('Y', $ts);
+    return "{$dia} de {$mes} de {$ano}";
+}
+
+/**
+ * Calcula o tempo estimado de leitura com base na contagem de palavras
+ */
+function calcular_tempo_leitura(string $texto): string {
+    $palavras = str_word_count(strip_tags($texto));
+    $minutos = max(1, (int)ceil($palavras / 180));
+    return $minutos . ' min de leitura';
+}
+
+
