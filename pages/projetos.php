@@ -170,7 +170,11 @@ ob_start();
                     <?php endif; ?>
                 </div>
 
-                <h3 class="proj-card-title"><?= e($p['nome_projeto']) ?></h3>
+                <h3 class="proj-card-title">
+                    <a href="/editais?projeto=<?= (int)$p['id'] ?>" style="color:inherit; text-decoration:none;">
+                        <?= e($p['nome_projeto']) ?>
+                    </a>
+                </h3>
 
                 <!-- Tabela de Metadados -->
                 <div class="proj-meta-table">

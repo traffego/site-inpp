@@ -5573,5 +5573,563 @@ body.dark .article-related-section {
     }
 }
 
+/* ==========================================================================
+   DOSSIÊ DE PROJETOS & EDITAIS RELACIONADOS — DESIGN SYSTEM INPP
+   ========================================================================== */
+
+/* 1. Hero do Dossiê do Projeto */
+.proj-dossier-hero {
+    background: linear-gradient(180deg, #e6f3fa 0%, #f2f2f2 100%);
+    padding: 3rem 0 2.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+body.dark .proj-dossier-hero {
+    background: linear-gradient(180deg, #07598c 0%, #0b1320 100%);
+    border-bottom-color: #1e293b;
+}
+
+.proj-dossier-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.proj-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #07598c;
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.proj-back-btn:hover {
+    background: #f1f5f9;
+    color: #0a7abf;
+    border-color: #0a7abf;
+}
+
+body.dark .proj-back-btn {
+    background: #111d30;
+    color: #38bdf8;
+    border-color: #1e293b;
+}
+
+body.dark .proj-back-btn:hover {
+    background: #1e293b;
+    border-color: #38bdf8;
+}
+
+.proj-dossier-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.proj-badge-mrosc {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(10, 122, 191, 0.12);
+    color: #07598c;
+    border: 1px solid rgba(10, 122, 191, 0.25);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+body.dark .proj-badge-mrosc {
+    background: rgba(20, 161, 217, 0.15);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.proj-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.proj-status-execucao {
+    background: rgba(10, 122, 191, 0.15);
+    color: #07598c;
+    border: 1px solid rgba(10, 122, 191, 0.3);
+}
+
+body.dark .proj-status-execucao {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.proj-status-concluido {
+    background: rgba(38, 140, 63, 0.15);
+    color: #268c3f;
+    border: 1px solid rgba(38, 140, 63, 0.3);
+}
+
+body.dark .proj-status-concluido {
+    background: rgba(38, 140, 63, 0.2);
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.proj-status-prestacao {
+    background: rgba(234, 179, 8, 0.15);
+    color: #b45309;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+body.dark .proj-status-prestacao {
+    background: rgba(234, 179, 8, 0.2);
+    color: #fde047;
+    border-color: rgba(253, 224, 71, 0.3);
+}
+
+.proj-dossier-title {
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: #07598c;
+    line-height: 1.25;
+    margin: 0 0 1.75rem 0;
+    letter-spacing: -0.02em;
+    max-width: 980px;
+}
+
+body.dark .proj-dossier-title {
+    color: #f8fafc;
+}
+
+/* 2. Régua de Ficha Técnica do Projeto */
+.proj-dossier-facts-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.35rem 1.75rem;
+    box-shadow: 0 4px 16px rgba(7, 89, 140, 0.05);
+}
+
+body.dark .proj-dossier-facts-grid {
+    background: #111d30;
+    border-color: #1e293b;
+    box-shadow: none;
+}
+
+.proj-dossier-fact-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.proj-dossier-fact-label {
+    font-size: 0.725rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+}
+
+body.dark .proj-dossier-fact-label {
+    color: #94a3b8;
+}
+
+.proj-dossier-fact-val {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #07598c;
+    line-height: 1.25;
+}
+
+body.dark .proj-dossier-fact-val {
+    color: #38bdf8;
+}
+
+.proj-dossier-fact-desc {
+    font-size: 0.775rem;
+    color: #475569;
+    margin-top: 0.2rem;
+}
+
+body.dark .proj-dossier-fact-desc {
+    color: #94a3b8;
+}
+
+/* 3. Seção Principal & Grid de Conteúdo do Dossiê */
+.proj-dossier-section {
+    padding: 3.5rem 0 5rem 0;
+}
+
+.proj-dossier-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Card: Objeto & Apresentação Institucional */
+.proj-dossier-about-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #0a7abf;
+    border-radius: 12px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 2.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+body.dark .proj-dossier-about-card {
+    background: #111d30;
+    border-color: #1e293b;
+    border-left-color: #38bdf8;
+}
+
+.proj-dossier-about-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #07598c;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+body.dark .proj-dossier-about-title {
+    color: #38bdf8;
+}
+
+.proj-dossier-about-text {
+    font-size: 1.025rem;
+    line-height: 1.75;
+    color: #334155;
+    margin: 0 0 1.25rem 0;
+}
+
+body.dark .proj-dossier-about-text {
+    color: #cbd5e1;
+}
+
+.proj-dossier-about-text:last-child {
+    margin-bottom: 0;
+}
+
+/* 4. Grupos de Documentos & Editais */
+.proj-groups-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.proj-group-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+body.dark .proj-group-card {
+    background: #111d30;
+    border-color: #1e293b;
+}
+
+.proj-group-header {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+body.dark .proj-group-header {
+    background: #0b1320;
+    border-bottom-color: #1e293b;
+}
+
+.proj-group-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #07598c;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+body.dark .proj-group-title {
+    color: #f8fafc;
+}
+
+.proj-group-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0a7abf;
+    background: rgba(10, 122, 191, 0.1);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(10, 122, 191, 0.2);
+}
+
+body.dark .proj-group-badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.2);
+}
+
+.proj-docs-list-v2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.proj-doc-item-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px solid #f1f5f9;
+    gap: 1.5rem;
+    transition: background-color 0.2s ease;
+    flex-wrap: wrap;
+}
+
+body.dark .proj-doc-item-v2 {
+    border-bottom-color: #1e293b;
+}
+
+.proj-doc-item-v2:last-child {
+    border-bottom: none;
+}
+
+.proj-doc-item-v2:hover {
+    background-color: #f8fafc;
+}
+
+body.dark .proj-doc-item-v2:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.proj-doc-item-left {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    flex: 1;
+    min-width: 260px;
+}
+
+.proj-doc-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+body.dark .proj-doc-icon-wrap {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.proj-doc-icon-wrap.excel {
+    background: rgba(38, 140, 63, 0.1);
+    color: #268c3f;
+}
+
+body.dark .proj-doc-icon-wrap.excel {
+    background: rgba(38, 140, 63, 0.2);
+    color: #4ade80;
+}
+
+.proj-doc-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.proj-doc-title-v2 {
+    font-size: 0.975rem;
+    font-weight: 700;
+    color: #07598c;
+    line-height: 1.35;
+    margin: 0 0 0.35rem 0;
+}
+
+body.dark .proj-doc-title-v2 {
+    color: #f8fafc;
+}
+
+.proj-doc-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: #64748b;
+    flex-wrap: wrap;
+}
+
+body.dark .proj-doc-meta-row {
+    color: #94a3b8;
+}
+
+.proj-doc-badge-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(10, 122, 191, 0.12);
+    color: #07598c;
+}
+
+body.dark .proj-doc-badge-type {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+}
+
+.btn-download-doc {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.15rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: #0a7abf;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-download-doc:hover {
+    background: #07598c;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(10, 122, 191, 0.25);
+}
+
+/* 5. Sidebar do Dossiê */
+.proj-dossier-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    position: sticky;
+    top: 90px;
+}
+
+.proj-compliance-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+body.dark .proj-compliance-card {
+    background: #111d30;
+    border-color: #1e293b;
+}
+
+.proj-compliance-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+body.dark .proj-compliance-header {
+    border-bottom-color: #1e293b;
+}
+
+.proj-compliance-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #07598c;
+    margin: 0;
+}
+
+body.dark .proj-compliance-title {
+    color: #38bdf8;
+}
+
+.proj-compliance-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 1.25rem;
+}
+
+body.dark .proj-compliance-text {
+    color: #94a3b8;
+}
+
+/* Responsividade do Dossiê */
+@media (max-width: 1024px) {
+    .proj-dossier-facts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .proj-dossier-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .proj-dossier-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
+    .proj-dossier-title {
+        font-size: 1.75rem;
+    }
+    .proj-dossier-facts-grid {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+    }
+    .proj-doc-item-v2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .btn-download-doc {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
 
 

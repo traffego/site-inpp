@@ -53,8 +53,8 @@ if (!$file_to_include) {
         $_GET['id']      = (int)$m[1];
         $file_to_include = 'pages/noticia-detalhe.php';
     } elseif (preg_match('#^/projetos/(\d+)$#', $request_uri, $m)) {
-        $_GET['id']      = (int)$m[1];
-        $file_to_include = 'pages/projetos.php';
+        $_GET['projeto'] = (int)$m[1];
+        $file_to_include = 'pages/editais.php';
     }
 }
 
