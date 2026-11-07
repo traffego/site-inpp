@@ -97,6 +97,10 @@ ob_start();
     </div>
     <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
         <div class="btn-list justify-content-md-end">
+            <a href="/admin/manual.html" target="_blank" class="btn btn-outline-info btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Manual do Painel
+            </a>
             <a href="/admin/transparencia/painel.php" class="btn btn-outline-primary btn-sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                 Publicar Documento
@@ -105,6 +109,31 @@ ob_start();
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 Novo Projeto
             </a>
+        </div>
+    </div>
+</div>
+
+<!-- Banner de Boas-Vindas & Acesso ao Manual do Administrador -->
+<div class="card bg-primary-lt border-primary mb-4">
+    <div class="card-body py-3">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <span class="avatar bg-primary text-white">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </span>
+            </div>
+            <div class="col">
+                <h3 class="card-title text-primary mb-1 fw-bold">Manual de Operação do Administrador</h3>
+                <div class="text-secondary small">
+                    Consulte o guia completo com passo a passo para gerenciar editais, publicar notícias, atualizar a transparência e triar currículos.
+                </div>
+            </div>
+            <div class="col-auto mt-2 mt-md-0">
+                <a href="/admin/manual.html" target="_blank" class="btn btn-primary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    Abrir Guia do Usuário &rarr;
+                </a>
+            </div>
         </div>
     </div>
 </div>

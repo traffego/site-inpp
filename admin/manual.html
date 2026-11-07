@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual do Administrador — Portal INPP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --color-primary: #0A7ABF;
+      --color-primary-dark: #07598C;
+      --color-primary-light: #14A1D9;
+      --color-accent: #268C3F;
+      --color-bg: #F4F6F9;
+      --color-surface: #FFFFFF;
+      --color-text-main: #1E293B;
+      --color-text-muted: #64748B;
+      --color-border: #E2E8F0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      scroll-behavior: smooth;
+    }
+    
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* Print styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .manual-card {
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+      }
+      .sidebar {
+        display: none !important;
+      }
+      .main-content {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+
+    .badge-inpp {
+      background: rgba(10, 122, 191, 0.1);
+      color: #07598C;
+      border: 1px solid rgba(10, 122, 191, 0.25);
+    }
+    .badge-green {
+      background: rgba(38, 140, 63, 0.1);
+      color: #1E6E32;
+      border: 1px solid rgba(38, 140, 63, 0.25);
+    }
+    .badge-amber {
+      background: rgba(217, 119, 6, 0.1);
+      color: #B45309;
+      border: 1px solid rgba(217, 119, 6, 0.25);
+    }
+    
+    .step-number {
+      background: linear-gradient(135deg, #0A7ABF 0%, #07598C 100%);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(7, 89, 140, 0.25);
+    }
+
+    .ui-mock-window {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+    }
+    .ui-mock-topbar {
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ui-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .active-nav-link {
+      background: rgba(10, 122, 191, 0.08);
+      color: #07598C !important;
+      font-weight: 600;
+      border-left: 3px solid #0A7ABF;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- TOPO INSTITUCIONAL INPP -->
+  <header class="bg-[#07598C] text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm border border-white/20">
+          <svg class="w-6 h-6 text-[#14A1D9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold tracking-wider uppercase px-2 py-0.5 rounded bg-[#268C3F] text-white">Manual Oficial</span>
+            <span class="text-xs text-blue-200">Versão 2.4</span>
+          </div>
+          <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+            INPP — Instituto Nacional de Políticas Públicas
+          </h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 no-print">
+        <a href="#modulo-multimidia" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#14A1D9]/30 hover:bg-[#14A1D9]/40 text-white rounded-lg transition border border-white/20 shadow-sm font-semibold">
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+          </svg>
+          Vídeo &amp; Slides
+        </a>
+        <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/10 hover:bg-white/20 text-white rounded-lg transition border border-white/20 shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          Imprimir / Salvar PDF
+        </button>
+        <a href="/admin/dashboard.php" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#268C3F] hover:bg-[#1f7334] text-white rounded-lg transition shadow-sm font-semibold">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+          Abrir Painel Admin
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CORPO PRINCIPAL COM SIDEBAR E CONTEÚDO -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- SIDEBAR FIXA DE NAVEGAÇÃO -->
+      <aside class="lg:col-span-3 sticky top-24 no-print space-y-4">
+        <!-- Caixa de Busca Rápida -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-3">
+          <div class="relative">
+            <input type="text" id="searchInput" placeholder="Filtrar tópicos ou termos..." 
+                   class="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0A7ABF] focus:border-transparent">
+            <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Menu Lateral -->
+        <nav class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden text-sm py-2">
+          <div class="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Módulos do Sistema</div>
+          
+          <a href="#modulo-multimidia" class="nav-item flex items-center px-3 py-2 text-[#07598C] bg-blue-50/50 hover:bg-blue-50 transition border-l-2 border-[#0A7ABF] font-semibold">
+            <span class="w-5 text-center text-xs font-bold text-[#0A7ABF] me-2">▶</span>
+            Vídeo &amp; Apresentação
+          </a>
+          <a href="#modulo-acesso" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">01</span>
+            Acesso &amp; Segurança
+          </a>
+          <a href="#modulo-dashboard" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">02</span>
+            Visão Geral (Dashboard)
+          </a>
+          <a href="#modulo-projetos" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">03</span>
+            Projetos &amp; Editais (PDF)
+          </a>
+          <a href="#modulo-noticias" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">04</span>
+            Notícias &amp; Comunicação
+          </a>
+          <a href="#modulo-transparencia" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">05</span>
+            Portal da Transparência
+          </a>
+          <a href="#modulo-curriculos" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">06</span>
+            Banco de Talentos
+          </a>
+          <a href="#modulo-fornecedores" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">07</span>
+            Cadastro de Fornecedores
+          </a>
+          <a href="#modulo-organizacao" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">08</span>
+            Configurações &amp; Redes
+          </a>
+          <a href="#modulo-duvidas" class="nav-item flex items-center px-3 py-2 text-slate-600 hover:text-[#07598C] hover:bg-slate-50 transition border-l-2 border-transparent">
+            <span class="w-5 text-center text-xs font-bold text-slate-400 me-2">09</span>
+            Dúvidas &amp; Boas Práticas
+          </a>
+        </nav>
+
+        <!-- Card de Suporte e Contato -->
+        <div class="bg-gradient-to-br from-[#07598C] to-[#0A7ABF] rounded-xl text-white p-4 text-xs shadow-sm">
+          <div class="flex items-center gap-2 mb-2 font-bold text-white text-sm">
+            <svg class="w-4 h-4 text-[#14A1D9]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+            </svg>
+            Precisa de Auxílio?
+          </div>
+          <p class="text-blue-100 mb-3 leading-relaxed">
+            Este guia foi elaborado para que qualquer membro da diretoria possa atualizar o portal sem depender de programadores.
+          </p>
+          <div class="text-[11px] text-blue-200 border-t border-white/20 pt-2">
+            Ambiente Seguro &bull; Tabler UI 1.0 &bull; PHP 8.2+
+          </div>
+        </div>
+      </aside>
+
+      <!-- CONTEÚDO PRINCIPAL -->
+      <main class="lg:col-span-9 space-y-10 main-content">
+
+        <!-- APRESENTAÇÃO / HERO DO MANUAL -->
+        <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-6">
+            <div>
+              <span class="text-xs font-semibold tracking-wider uppercase text-[#0A7ABF] bg-blue-50 px-2.5 py-1 rounded-md">
+                Guia de Operação e Governança Digital
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-[#07598C] mt-2">
+                Painel Administrativo do INPP
+              </h2>
+              <p class="text-slate-600 mt-1 text-sm max-w-2xl leading-relaxed">
+                Bem-vindo ao manual completo de administração. Aqui você encontrará instruções passo a passo para gerenciar projetos, editais públicos, publicações de notícias, prestação de contas no Portal da Transparência, currículos e fornecedores.
+              </p>
+            </div>
+            <div class="flex flex-col items-end text-xs text-slate-500">
+              <span class="font-medium text-slate-700">Padrão Visual Tabler UI</span>
+              <span>Totalmente Responsivo</span>
+              <span class="text-[#268C3F] font-semibold mt-1 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-[#268C3F]"></span> Sistema Online e Ativo
+              </span>
+            </div>
+          </div>
+
+          <!-- Grade de Atalhos Rápidos -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs">
+            <a href="#modulo-projetos" class="p-3 rounded-lg border border-slate-100 bg-slate-50 hover:bg-blue-50/60 hover:border-[#14A1D9] transition group">
+              <div class="text-lg font-bold text-[#07598C] group-hover:text-[#0A7ABF]">Editais</div>
+              <div class="text-slate-500 mt-0.5">Grupos e PDFs</div>
+            </a>
+            <a href="#modulo-noticias" class="p-3 rounded-lg border border-slate-100 bg-slate-50 hover:bg-blue-50/60 hover:border-[#14A1D9] transition group">
+              <div class="text-lg font-bold text-[#07598C] group-hover:text-[#0A7ABF]">Notícias</div>
+              <div class="text-slate-500 mt-0.5">Editor TinyMCE</div>
+            </a>
+            <a href="#modulo-transparencia" class="p-3 rounded-lg border border-slate-100 bg-slate-50 hover:bg-blue-50/60 hover:border-[#14A1D9] transition group">
+              <div class="text-lg font-bold text-[#07598C] group-hover:text-[#0A7ABF]">Transparência</div>
+              <div class="text-slate-500 mt-0.5">MROSC &amp; Finanças</div>
+            </a>
+            <a href="#modulo-curriculos" class="p-3 rounded-lg border border-slate-100 bg-slate-50 hover:bg-blue-50/60 hover:border-[#14A1D9] transition group">
+              <div class="text-lg font-bold text-[#07598C] group-hover:text-[#0A7ABF]">Currículos</div>
+              <div class="text-slate-500 mt-0.5">Triagem &amp; Cargos</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- SEÇÃO MULTIMÍDIA: VÍDEO TUTORIAL & NOTEBOOKLM -->
+        <section id="modulo-multimidia" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div class="flex items-center gap-3">
+              <span class="step-number bg-gradient-to-r from-red-500 to-rose-600">▶</span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-red-100 text-red-700">Vídeo Aula &amp; Inteligência Artificial</span>
+                  <span class="text-[10px] font-semibold text-slate-400">Awesome Screenshot + NotebookLM</span>
+                </div>
+                <h3 class="text-xl font-bold text-[#07598C] mt-0.5">Vídeo Tutorial &amp; Apresentação Executiva</h3>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="https://notebook.google.com/notebook/a8a7c076-5bc9-4db6-b2a9-715789084bae/artifact/5f080f1e-dcb9-487a-bddc-84524635a9be?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_" 
+                 target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-[#0A7ABF] text-white hover:bg-[#07598C] rounded-lg transition shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+                Abrir Slides &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Player do Vídeo Tutorial (Awesome Screenshot) em Proporção 16:9 Fluida -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500">
+              <span class="font-medium text-slate-700 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                Demonstração Prática em Vídeo da Área Administrativa
+              </span>
+              <span>Tela Cheia Disponível</span>
+            </div>
+            <div class="relative w-full rounded-xl overflow-hidden shadow-md border border-slate-200 bg-slate-900" style="padding-top: 56.25%;">
+              <iframe class="absolute top-0 left-0 w-full h-full" frameBorder="0" width="100%" height="100%" webkitallowfullscreen mozallowfullscreen allowfullscreen src="https://www.awesomescreenshot.com/embed?id=57591109&shareKey=54524eec1034a8a802d2642edbe448b5&info=false"></iframe>
+            </div>
+          </div>
+
+          <!-- Cards dos Links do NotebookLM -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <!-- Card 1: Apresentação de Slides -->
+            <div class="p-5 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-white hover:border-[#14A1D9] transition shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#0A7ABF]/10 text-[#07598C] uppercase tracking-wide">Apresentação Oficial</span>
+                  <svg class="w-5 h-5 text-[#0A7ABF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <h4 class="font-bold text-slate-800 text-sm">Apresentação de Slides no NotebookLM</h4>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  Apresentação estruturada de slides gerada com IA para formação da diretoria, gestores e equipe operacional sobre todas as rotinas do portal.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-blue-100/60">
+                <a href="https://notebook.google.com/notebook/a8a7c076-5bc9-4db6-b2a9-715789084bae/artifact/5f080f1e-dcb9-487a-bddc-84524635a9be?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_" 
+                   target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-bold text-[#07598C] hover:text-[#0A7ABF]">
+                  Visualizar Apresentação de Slides &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 2: Caderno Completo NotebookLM -->
+            <div class="p-5 rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50/40 to-white hover:border-[#268C3F] transition shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#268C3F]/10 text-[#1E6E32] uppercase tracking-wide">Assistente com IA</span>
+                  <svg class="w-5 h-5 text-[#268C3F]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253"/></svg>
+                </div>
+                <h4 class="font-bold text-slate-800 text-sm">Caderno Interativo do Painel (NotebookLM)</h4>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  Acesse o caderno oficial com todas as fontes e manuais indexados para fazer perguntas, resumos e tirar dúvidas interativas com a IA do Google.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-emerald-100/60">
+                <a href="https://notebook.google.com/notebook/a8a7c076-5bc9-4db6-b2a9-715789084bae/preview" 
+                   target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E6E32] hover:text-[#268C3F]">
+                  Acessar Caderno no NotebookLM &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 01. ACESSO AO PAINEL & SEGURANÇA -->
+        <section id="modulo-acesso" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">01</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Acesso ao Painel &amp; Segurança</h3>
+              <p class="text-xs text-slate-500">Como entrar, manter sua conta segura e encerrar a sessão.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+              <p>
+                O painel administrativo do INPP foi projetado com camadas rigorosas de segurança, incluindo <strong>tokens CSRF anti-forjamento</strong>, <strong>hashing seguro de senha (Bcrypt)</strong> e proteção contra ataques de força bruta.
+              </p>
+              
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                <div class="font-semibold text-slate-800 text-xs uppercase tracking-wide">Como acessar:</div>
+                <div class="flex items-center gap-2">
+                  <code class="bg-white px-2.5 py-1 rounded border border-slate-300 text-xs font-mono text-[#07598C] select-all">
+                    https://seusite.com.br/admin
+                  </code>
+                </div>
+                <p class="text-xs text-slate-500">
+                  Digite seu usuário e senha cadastrados no formulário de autenticação.
+                </p>
+              </div>
+
+              <ul class="space-y-2 text-xs">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#268C3F] font-bold">✔</span>
+                  <span><strong>Sessão segura:</strong> A conexão expira automaticamente após inatividade para resguardar dados de candidatos e finanças.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#268C3F] font-bold">✔</span>
+                  <span><strong>Como sair:</strong> Clique no link vermelho <strong class="text-red-600">"Sair do Painel"</strong> no rodapé do menu lateral antes de fechar o navegador.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- UI Mockup Login -->
+            <div class="ui-mock-window">
+              <div class="ui-mock-topbar">
+                <div class="ui-circle bg-red-400"></div>
+                <div class="ui-circle bg-amber-400"></div>
+                <div class="ui-circle bg-green-400"></div>
+                <span class="text-[11px] text-slate-500 ml-2 font-mono">/admin/index.php</span>
+              </div>
+              <div class="p-5 bg-slate-50/50 space-y-3">
+                <div class="text-center pb-2">
+                  <div class="inline-block bg-[#07598C] text-white px-3 py-1 rounded text-xs font-bold">INPP ADMIN</div>
+                  <div class="text-xs font-semibold text-slate-700 mt-1">Acesso Restrito ao Sistema</div>
+                </div>
+                <div class="space-y-2">
+                  <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-500">Usuário ou E-mail</span>
+                    <div class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-700 font-mono">inppuser</div>
+                  </div>
+                  <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-500">Senha</span>
+                    <div class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-400 font-mono">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div>
+                  </div>
+                  <div class="pt-2">
+                    <div class="bg-[#0A7ABF] text-white text-center py-1.5 rounded text-xs font-bold shadow-sm">
+                      Entrar no Sistema &rarr;
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02. VISÃO GERAL (DASHBOARD) -->
+        <section id="modulo-dashboard" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">02</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Visão Geral &amp; Dashboard Operacional</h3>
+              <p class="text-xs text-slate-500">A central de inteligência e controle assim que você efetua login.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            A tela principal (<code class="text-xs font-mono bg-slate-100 px-1 py-0.5 rounded">/admin/dashboard.php</code>) consolida métricas vitais em tempo real, permitindo identificar novas demandas sem precisar navegar módulo por módulo:
+          </p>
+
+          <!-- Cards de Métricas Simulados -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="p-4 rounded-xl border border-blue-100 bg-blue-50/40">
+              <div class="text-xs font-semibold text-[#07598C] uppercase tracking-wider">Projetos Ativos</div>
+              <div class="text-2xl font-black text-[#0A7ABF] mt-1">100%</div>
+              <div class="text-[11px] text-slate-500 mt-1">Editais e iniciativas abertas</div>
+            </div>
+            <div class="p-4 rounded-xl border border-green-100 bg-green-50/40">
+              <div class="text-xs font-semibold text-[#1E6E32] uppercase tracking-wider">Currículos</div>
+              <div class="text-2xl font-black text-[#268C3F] mt-1">Recentes</div>
+              <div class="text-[11px] text-slate-500 mt-1">Banco de talentos atualizado</div>
+            </div>
+            <div class="p-4 rounded-xl border border-purple-100 bg-purple-50/40">
+              <div class="text-xs font-semibold text-purple-800 uppercase tracking-wider">Notícias</div>
+              <div class="text-2xl font-black text-purple-700 mt-1">Publicadas</div>
+              <div class="text-[11px] text-slate-500 mt-1">Comunicação e mídia</div>
+            </div>
+            <div class="p-4 rounded-xl border border-amber-100 bg-amber-50/40">
+              <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider">Transparência</div>
+              <div class="text-2xl font-black text-amber-600 mt-1">Ativa</div>
+              <div class="text-[11px] text-slate-500 mt-1">Auditoria e prestação pública</div>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-xs text-amber-900 flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+              <strong>Últimos Candidatos no Rodapé do Dashboard:</strong> A página inicial lista automaticamente os 8 últimos currículos que chegaram pelo formulário do portal, contendo nome, telefone, cargo pretendido e link direto para abrir a ficha.
+            </div>
+          </div>
+        </section>
+
+        <!-- 03. GESTÃO DE PROJETOS & DOSSIÊS DE EDITAIS -->
+        <section id="modulo-projetos" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">03</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Gestão de Projetos &amp; Dossiês de Editais (PDFs)</h3>
+              <p class="text-xs text-slate-500">Criação de projetos, agrupamento de arquivos de seleção e controle de visibilidade pública.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Este é um dos módulos mais estratégicos do portal. Ele alimenta a página pública <code class="text-xs font-mono bg-slate-100 px-1 py-0.5 rounded">/editais?projeto=ID</code>, onde proponentes, fornecedores e candidatos acessam editais de chamamento, termos de referência, erratas e resultados.
+          </p>
+
+          <!-- Passo a Passo Ilustrado -->
+          <div class="space-y-4">
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="bg-[#0A7ABF] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+              <div class="text-sm">
+                <div class="font-bold text-slate-800">Criar ou Editar o Projeto</div>
+                <p class="text-xs text-slate-600 mt-1">
+                  Acesse <strong>Projetos &rarr; Cadastrar Novo</strong> (<code class="text-[11px] font-mono">/admin/projetos/criar.php</code>). Preencha o nome do projeto (ex.: <em>"Projeto Esporte Cidadão 2026"</em>), resumo, objeto da parceria, datas de início/término e marque como <strong>Ativo</strong>.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="bg-[#0A7ABF] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+              <div class="text-sm">
+                <div class="font-bold text-slate-800">Organizar em Grupos de Documentos</div>
+                <p class="text-xs text-slate-600 mt-1">
+                  Na listagem, clique no botão azul <strong>"Documentos"</strong> do projeto desejado. Na lateral direita, use o card <strong>"Novo Grupo de Documentos"</strong>. Exemplos recomendados:
+                </p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="px-2 py-0.5 text-[11px] rounded bg-white border border-slate-300 font-mono text-slate-700">Edital e Anexos</span>
+                  <span class="px-2 py-0.5 text-[11px] rounded bg-white border border-slate-300 font-mono text-slate-700">Erratas e Esclarecimentos</span>
+                  <span class="px-2 py-0.5 text-[11px] rounded bg-white border border-slate-300 font-mono text-slate-700">Resultado Preliminar</span>
+                  <span class="px-2 py-0.5 text-[11px] rounded bg-white border border-slate-300 font-mono text-slate-700">Homologação Final</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="bg-[#0A7ABF] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+              <div class="text-sm">
+                <div class="font-bold text-slate-800">Fazer Upload do Arquivo PDF</div>
+                <p class="text-xs text-slate-600 mt-1">
+                  No card <strong>"Adicionar Documento"</strong>, selecione o grupo de destino, o tipo (Edital, Termo, Anexo, etc.), dê um título claro (ex.: <em>"Edital 01/2026 - Seleção de Instrutores"</em>) e anexe o PDF do seu computador. Clique em <strong>Publicar Documento</strong>.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="bg-[#268C3F] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
+              <div class="text-sm">
+                <div class="font-bold text-slate-800 flex items-center gap-2">
+                  Controle de Visibilidade Pública (🟢 Habilitado vs ⚪ Desabilitado)
+                  <span class="px-2 py-0.5 rounded text-[10px] bg-green-100 text-[#1E6E32] font-semibold">Recurso Anti-Erro</span>
+                </div>
+                <p class="text-xs text-slate-600 mt-1">
+                  Cada documento publicado possui um botão de alternância rápida de status:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+                  <div class="bg-white p-2.5 rounded border border-green-200 flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    <div class="text-xs">
+                      <strong>🟢 Habilitado (Público):</strong> O arquivo é exibido e clicável para download no portal.
+                    </div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded border border-slate-200 flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-slate-300"></span>
+                    <div class="text-xs">
+                      <strong>⚪ Desabilitado (Oculto):</strong> O arquivo fica invisível no site público, evitando download de minutas ou documentos suspensos.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dica Pro: Proteção contra Links Quebrados -->
+          <div class="bg-blue-50 border-l-4 border-[#0A7ABF] p-4 rounded-r-xl text-xs text-[#07598C]">
+            <strong>🛡️ Proteção de Integridade:</strong> O portal público verifica automaticamente o status. Se um grupo não contiver nenhum arquivo com status "🟢 Habilitado", o sistema avisa o cidadão que os arquivos estão em preparação ou suspensos, eliminando links quebrados ou telas de erro 404.
+          </div>
+        </section>
+
+        <!-- 04. MÓDULO DE NOTÍCIAS & COMUNICAÇÃO -->
+        <section id="modulo-noticias" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">04</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Notícias &amp; Comunicação Institucional</h3>
+              <p class="text-xs text-slate-500">Publicação de matérias, fotos em destaque e edição visual com TinyMCE.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            As notícias divulgam as realizações, convênios, eventos e ações de campo do INPP. A tela de publicação divide os campos estrategicamente:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+              <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0A7ABF]"></span>
+                Manchete &amp; Resumo
+              </div>
+              <p class="text-slate-600 leading-relaxed">
+                A <strong>Manchete</strong> é o título principal. O <strong>Resumo</strong> (lead) é exibido nos cards da página inicial e redes sociais para despertar o interesse da leitura.
+              </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+              <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0A7ABF]"></span>
+                Editor Visual TinyMCE
+              </div>
+              <p class="text-slate-600 leading-relaxed">
+                Escreva ou cole o texto completo da matéria. Você pode formatar títulos, negrito, listas numeradas, citações e links externos de forma idêntica ao Word.
+              </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+              <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0A7ABF]"></span>
+                Fotos em Destaque
+              </div>
+              <p class="text-slate-600 leading-relaxed">
+                Envie a <strong>Imagem Principal</strong> (capa da notícia no topo) e, opcionalmente, a <strong>Imagem Secundária</strong> (exibida no rodapé da matéria). Formatos aceitos: JPG, PNG, WebP.
+              </p>
+            </div>
+          </div>
+
+          <!-- Dica Prática de Redação -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs space-y-2">
+            <span class="font-bold text-slate-800 uppercase tracking-wide">💡 Dica de Ouro para Imagens:</span>
+            <p class="text-slate-600">
+              Para as fotos de capa ficarem alinhadas perfeitamente nos computadores e celulares, dê preferência a fotos na <strong>horizontal (paisagem)</strong>, com proporção 16:9 ou 4:3 (por exemplo, 1200x675 pixels). Evite fotos verticais muito altas como capa principal.
+            </p>
+          </div>
+        </section>
+
+        <!-- 05. PORTAL DA TRANSPARÊNCIA (MROSC) -->
+        <section id="modulo-transparencia" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">05</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Portal da Transparência &amp; MROSC</h3>
+              <p class="text-xs text-slate-500">Conformidade com a Lei 13.019/2014, prestação de contas e repositório oficial.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            O painel divide os documentos institucionais e prestações de contas em 3 grandes seções dedicadas, atendendo aos rigores dos órgãos de controle (TCE, TCU, CGU e Ministérios):
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- 1. Painel de Arquivos -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase text-[#07598C]">Seção 1</span>
+                <span class="px-2 py-0.5 rounded text-[10px] bg-blue-100 text-[#07598C] font-semibold">Institucional</span>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">Painel de Arquivos</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Armazena os documentos perenes da entidade:
+              </p>
+              <ul class="text-[11px] text-slate-500 space-y-1 list-disc pl-4">
+                <li>Estatuto Social e Registros</li>
+                <li>Ata de Eleição e Posse dos Dirigentes</li>
+                <li>Regulamento de Compras &amp; Contratações</li>
+                <li>Balanços Patrimoniais Anuais</li>
+              </ul>
+              <div class="text-[11px] text-slate-400 font-mono pt-2 border-t border-slate-100">
+                /admin/transparencia/painel.php
+              </div>
+            </div>
+
+            <!-- 2. Doc. Financeiros -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase text-[#268C3F]">Seção 2</span>
+                <span class="px-2 py-0.5 rounded text-[10px] bg-green-100 text-[#1E6E32] font-semibold">Contábil</span>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">Doc. Financeiros</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Prestações de contas operacionais periódicas:
+              </p>
+              <ul class="text-[11px] text-slate-500 space-y-1 list-disc pl-4">
+                <li>Relatórios de Execução Financeira</li>
+                <li>Comprovantes e Notas Fiscais agrupadas</li>
+                <li>Extratos Bancários das Parcerias</li>
+                <li>Demonstrativos de Resultados</li>
+              </ul>
+              <div class="text-[11px] text-slate-400 font-mono pt-2 border-t border-slate-100">
+                /admin/transparencia/financeiro.php
+              </div>
+            </div>
+
+            <!-- 3. Termos e Parcerias -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase text-purple-700">Seção 3</span>
+                <span class="px-2 py-0.5 rounded text-[10px] bg-purple-100 text-purple-800 font-semibold">Convênios</span>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">Termos e Parcerias</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Instrumentos jurídicos firmados com o poder público:
+              </p>
+              <ul class="text-[11px] text-slate-500 space-y-1 list-disc pl-4">
+                <li>Termos de Colaboração e Fomento</li>
+                <li>Termos Aditivos e Prorrogações</li>
+                <li>Planos de Trabalho Oficiais</li>
+                <li>Portarias de Designação de Gestores</li>
+              </ul>
+              <div class="text-[11px] text-slate-400 font-mono pt-2 border-t border-slate-100">
+                /admin/transparencia/termos.php
+              </div>
+            </div>
+          </div>
+
+          <!-- Observação de Organização Automática -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-600">
+            <strong>Prefixo Automático de Nomes:</strong> Para evitar substituição acidental de arquivos com nomes genéricos (como <code class="font-mono">relatorio.pdf</code>), o sistema renomeia o arquivo salvo adicionando a data de publicação como prefixo (exemplo: <code class="font-mono text-[#07598C]">2026_04_15_relatorio_anual.pdf</code>).
+          </div>
+        </section>
+
+        <!-- 06. BANCO DE TALENTOS & GESTÃO DE CURRÍCULOS -->
+        <section id="modulo-curriculos" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">06</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Banco de Talentos &amp; Triagem de Currículos</h3>
+              <p class="text-xs text-slate-500">Gestão dos candidatos que se cadastram pelo formulário "Trabalhe Conosco".</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Todas as pessoas que se candidatam a vagas nos projetos do INPP têm seus dados registrados diretamente no banco de dados, protegidos e disponíveis para consulta do RH.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+              <h4 class="font-bold text-slate-800 text-sm">Funcionalidades do Módulo:</h4>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#0A7ABF] font-bold">&bull;</span>
+                  <span><strong>Filtro por Cargo e Projeto:</strong> Selecione na barra superior qual função você está recrutando (ex.: Assistente Social, Coordenador Pedagógico, Instrutor de Esportes) para listar apenas os perfis relevantes.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#0A7ABF] font-bold">&bull;</span>
+                  <span><strong>Ficha Completa do Candidato:</strong> Clique no botão azul <span class="bg-blue-50 text-[#07598C] px-1.5 py-0.5 rounded font-semibold">Visualizar</span> para acessar todos os dados: endereço, telefones, WhatsApp, escolaridade e resumo profissional.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#0A7ABF] font-bold">&bull;</span>
+                  <span><strong>Download do PDF do Currículo:</strong> Se o candidato anexou seu currículo em PDF, um botão verde de download permitirá abrir o documento em tela cheia com um clique.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#0A7ABF] font-bold">&bull;</span>
+                  <span><strong>Gerenciar Cargos (<code class="font-mono">funcoes.php</code>):</strong> Cadastre novos cargos a qualquer momento. Assim que você adiciona uma função aqui, ela passa a aparecer instantaneamente no formulário público para os novos candidatos.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- UI Mockup Lista Currículos -->
+            <div class="ui-mock-window">
+              <div class="ui-mock-topbar">
+                <span class="text-[11px] font-bold text-slate-700">Painel de Triagem &bull; Currículos Recentes</span>
+              </div>
+              <div class="p-3 divide-y divide-slate-100 text-xs">
+                <div class="py-2.5 flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-slate-800">Mariana Costa Silva</div>
+                    <div class="text-[11px] text-slate-500">Coordenadora de Projetos &bull; (61) 98765-4321</div>
+                  </div>
+                  <span class="px-2 py-1 bg-blue-100 text-[#07598C] rounded font-semibold text-[10px]">Ver Ficha</span>
+                </div>
+                <div class="py-2.5 flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-slate-800">Carlos Eduardo Mendes</div>
+                    <div class="text-[11px] text-slate-500">Assistente Social &bull; (61) 99123-4567</div>
+                  </div>
+                  <span class="px-2 py-1 bg-blue-100 text-[#07598C] rounded font-semibold text-[10px]">Ver Ficha</span>
+                </div>
+                <div class="py-2.5 flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-slate-800">Aline Ramos Vasconcelos</div>
+                    <div class="text-[11px] text-slate-500">Instrutora de Dança &bull; (61) 98456-7890</div>
+                  </div>
+                  <span class="px-2 py-1 bg-blue-100 text-[#07598C] rounded font-semibold text-[10px]">Ver Ficha</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 07. CADASTRO DE FORNECEDORES -->
+        <section id="modulo-fornecedores" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">07</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Cadastro de Fornecedores &amp; Compras</h3>
+              <p class="text-xs text-slate-500">Banco de empresas parceiras, prestadores de serviço e cotações.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            O INPP mantém um cadastro público de fornecedores para garantir ampla competitividade e lisura nas cotações e compras diretas dos projetos executados.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div class="font-bold text-slate-800 mb-1">🔍 Busca Inteligente</div>
+              <p class="text-slate-600 leading-relaxed">
+                Localize qualquer empresa cadastrada digitando apenas o <strong>CNPJ</strong>, a <strong>Razão Social</strong> ou o <strong>Nome Fantasia</strong> no campo de busca.
+              </p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div class="font-bold text-slate-800 mb-1">📋 Ficha Cadastral Completa</div>
+              <p class="text-slate-600 leading-relaxed">
+                Visualize dados jurídicos, endereço fiscal, responsável comercial, telefone de contato e ramos de atividade em que a empresa atua.
+              </p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div class="font-bold text-slate-800 mb-1">⚖️ Compliance &amp; Auditoria</div>
+              <p class="text-slate-600 leading-relaxed">
+                Facilita o envio de solicitações de cotação de preços para comprovação de preço de mercado exigida pelo MROSC.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 08. CONFIGURAÇÕES DA ORGANIZAÇÃO & REDES SOCIAIS -->
+        <section id="modulo-organizacao" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">08</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Configurações da Organização &amp; Redes Sociais</h3>
+              <p class="text-xs text-slate-500">Alteração do cabeçalho institucional, rodapé, telefones e links sociais dinâmicos.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Em <code class="text-xs font-mono bg-slate-100 px-1 py-0.5 rounded">/admin/configuracoes/organizacao.php</code>, você controla todas as informações institucionais exibidas globalmente no site sem tocar em código:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3 text-xs">
+              <h4 class="font-bold text-slate-800 text-sm">Dados Oficiais da Entidade:</h4>
+              <ul class="space-y-1.5 text-slate-600">
+                <li>&bull; <strong>Nome da Entidade:</strong> Instituto Nacional de Políticas Públicas</li>
+                <li>&bull; <strong>Nome do Presidente:</strong> Atualize sempre que houver nova diretoria</li>
+                <li>&bull; <strong>Telefone Oficial &amp; E-mail:</strong> Atualizam os botões da página de Contato</li>
+                <li>&bull; <strong>Endereço Sede / CEP:</strong> Alimenta o mapa e o rodapé de todas as páginas</li>
+                <li>&bull; <strong>Tema do Painel:</strong> Alterne entre Modo Claro ou Modo Escuro (Dark)</li>
+              </ul>
+            </div>
+
+            <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-200 space-y-3 text-xs">
+              <h4 class="font-bold text-[#07598C] text-sm">✨ Gestão Inteligente de Redes Sociais:</h4>
+              <p class="text-slate-600 leading-relaxed">
+                Você pode preencher individualmente as URLs dos perfis oficiais:
+              </p>
+              <div class="space-y-1 text-slate-700 font-mono text-[11px]">
+                <div>&bull; Facebook (ex.: https://facebook.com/inppbrasil)</div>
+                <div>&bull; Instagram (ex.: https://instagram.com/inpp_oficial)</div>
+                <div>&bull; YouTube (ex.: https://youtube.com/@inpp)</div>
+                <div>&bull; LinkedIn (ex.: https://linkedin.com/company/inpp)</div>
+              </div>
+              <div class="bg-white p-2.5 rounded border border-blue-200 text-[#07598C] text-[11px]">
+                <strong>Regra Automática:</strong> Se o INPP ainda não possui canal no YouTube ou LinkedIn, basta deixar o campo vazio. O ícone correspondente desaparecerá automaticamente do rodapé do site, evitando que os visitantes cliquem em links vazios!
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 09. DÚVIDAS FREQUENTES & BOAS PRÁTICAS -->
+        <section id="modulo-duvidas" class="topic-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+            <span class="step-number">09</span>
+            <div>
+              <h3 class="text-xl font-bold text-[#07598C]">Dúvidas Frequentes &amp; Boas Práticas Operacionais</h3>
+              <p class="text-xs text-slate-500">Recomendações técnicas para manter o site rápido, seguro e impecável.</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <!-- Accordion Item 1 -->
+            <details class="group bg-slate-50 rounded-xl border border-slate-200 p-4 transition">
+              <summary class="font-bold text-slate-800 cursor-pointer flex items-center justify-between list-none">
+                <span>Qual o tamanho máximo recomendado para upload de PDFs de editais?</span>
+                <span class="text-[#0A7ABF] group-open:rotate-180 transition-transform">&darr;</span>
+              </summary>
+              <p class="mt-3 text-slate-600 leading-relaxed pl-2 border-l-2 border-[#0A7ABF]">
+                Recomendamos arquivos de até <strong>15 MB</strong> por documento. Se um edital com anexos escaneados ultrapassar esse limite, use ferramentas gratuitas de otimização de PDF (como o <em>IlovePDF</em> ou <em>Adobe Compress</em>) para reduzir o peso sem perder a nitidez da leitura.
+              </p>
+            </details>
+
+            <!-- Accordion Item 2 -->
+            <details class="group bg-slate-50 rounded-xl border border-slate-200 p-4 transition">
+              <summary class="font-bold text-slate-800 cursor-pointer flex items-center justify-between list-none">
+                <span>Como excluir um documento sem quebrar o histórico do projeto?</span>
+                <span class="text-[#0A7ABF] group-open:rotate-180 transition-transform">&darr;</span>
+              </summary>
+              <p class="mt-3 text-slate-600 leading-relaxed pl-2 border-l-2 border-[#0A7ABF]">
+                Se o documento continha um erro de digitação simples, ao invés de excluir, você pode <strong>desabilitar</strong> o item anterior e fazer o upload da nova versão corrigida com o título atualizado (ex.: <em>"Edital 01/2026 - Retificado"</em>). Se preferir remover definitivamente, basta clicar no botão vermelho "Excluir", e o arquivo será apagado do servidor automaticamente.
+              </p>
+            </details>
+
+            <!-- Accordion Item 3 -->
+            <details class="group bg-slate-50 rounded-xl border border-slate-200 p-4 transition">
+              <summary class="font-bold text-slate-800 cursor-pointer flex items-center justify-between list-none">
+                <span>O que fazer se uma foto de notícia não carregar?</span>
+                <span class="text-[#0A7ABF] group-open:rotate-180 transition-transform">&darr;</span>
+              </summary>
+              <p class="mt-3 text-slate-600 leading-relaxed pl-2 border-l-2 border-[#0A7ABF]">
+                Verifique se o formato da foto é JPG, PNG ou WebP. Fotos em formato HEIC (comuns em iPhones) devem ser convertidas para JPG antes do upload. Certifique-se também de que o arquivo tenha menos de 10 MB.
+              </p>
+            </details>
+
+            <!-- Accordion Item 4 -->
+            <details class="group bg-slate-50 rounded-xl border border-slate-200 p-4 transition">
+              <summary class="font-bold text-slate-800 cursor-pointer flex items-center justify-between list-none">
+                <span>Como criar novos usuários de acesso ao painel?</span>
+                <span class="text-[#0A7ABF] group-open:rotate-180 transition-transform">&darr;</span>
+              </summary>
+              <p class="mt-3 text-slate-600 leading-relaxed pl-2 border-l-2 border-[#0A7ABF]">
+                Por motivos de alta segurança institucional, novos administradores são criados via base de dados autenticada ou solicitados à equipe de infraestrutura tecnológica com registro em ata, garantindo o rastreamento das permissões administrativas.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <!-- RODAPÉ DO MANUAL -->
+        <footer class="text-center text-xs text-slate-400 py-6 border-t border-slate-200">
+          <p>© 2026 INPP — Instituto Nacional de Políticas Públicas. Todos os direitos reservados.</p>
+          <p class="mt-1 text-[11px] text-slate-400">Manual Técnico de Operação Administrativa &bull; Padrão Web Tabler UI &bull; WCAG AA Compliance</p>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- SCRIPT INTERATIVO (BUSCA RÁPIDA, DESTAQUE DE LINKS E ATALHOS) -->
+  <script>
+    // 1. Destaque dinâmico do menu ao rolar
+    const navLinks = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.topic-section');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active-nav-link');
+        if (link.getAttribute('href') === '#' + currentSectionId) {
+          link.classList.add('active-nav-link');
+        }
+      });
+    });
+
+    // 2. Filtro em tempo real dos módulos
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        sections.forEach(section => {
+          const text = section.innerText.toLowerCase();
+          if (query === '' || text.includes(query)) {
+            section.style.display = '';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
